@@ -281,6 +281,26 @@ tabD.addEventListener('click',()=>setMode('drill'));
 setNote();
 render(cities[0]);
 </script>
-<!-- GoatCounter aggregate analytics (privacy-light, no cookies). Site: fv-igcc.goatcounter.com -->
-<script data-goatcounter="https://fv-igcc.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+<!-- Visit logging: pings your own Google Apps Script -> your Google Sheet. Anonymous, no cookies (localStorage visitor id only). -->
+<script>
+(function(){
+  var EP="";
+  if(!EP) return;
+  try{
+    var ua=navigator.userAgent||'';
+    var dev=/Mobi|Android|iPhone|iPad|iPod/i.test(ua)?'mobile':'desktop';
+    var br=/Edg/.test(ua)?'Edge':(/OPR|Opera/.test(ua)?'Opera':(/Chrome/.test(ua)?'Chrome':(/Firefox/.test(ua)?'Firefox':(/Safari/.test(ua)?'Safari':'Other'))));
+    var vid=localStorage.getItem('fv_vid');
+    if(!vid){vid=Date.now().toString(36)+Math.random().toString(36).slice(2,8);localStorage.setItem('fv_vid',vid);}
+    var q='?tab=landing'+
+      '&ref='+encodeURIComponent(document.referrer||'(direct)')+
+      '&br='+encodeURIComponent(br)+
+      '&dev='+dev+
+      '&lang='+encodeURIComponent(navigator.language||'')+
+      '&scr='+screen.width+'x'+screen.height+
+      '&vid='+vid+
+      '&path='+encodeURIComponent(location.pathname);
+    new Image().src=EP+q;
+  }catch(e){}
+})();
+</script>
